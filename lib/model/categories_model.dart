@@ -34,8 +34,8 @@ class Categories {
       limit: limit ?? this.limit,
       next: next ?? this.next,
       offset: offset ?? this.offset,
-      previous: previous ?? this.previous,
-      total: total ?? this.total,
+      previous: previous ?? previous,
+      total: total ?? total,
     );
   }
 

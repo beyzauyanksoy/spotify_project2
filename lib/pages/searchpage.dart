@@ -1,13 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/category_provider.dart';
-import '../services/spotify_services.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -17,26 +12,26 @@ class SearchPage extends StatefulWidget {
 }
 
 List<Color> renk = [
-  Colors.red,
-  Colors.blue,
-  Colors.green,
-  Colors.grey,
-  Colors.amber,
-  Colors.pink,
-  Colors.red,
-  Colors.blue,
-  Colors.green,
-  Colors.grey,
-  Colors.amber,
-  Colors.pink,
-  Colors.red,
-  Colors.blue,
-  Colors.green,
-  Colors.grey,
-  Colors.amber,
-  Colors.pink,
-  Colors.red,
-  Colors.blue,
+  Color(0xffff8a44),
+  Color(0xffa78398),
+  Color(0xff8796b7),
+  Color(0xff69836b),
+  Color(0xffff8a44),
+  Color(0xffa78398),
+  Color(0xff8796b7),
+  Color(0xff69836b),
+  Color(0xffff8a44),
+  Color(0xffa78398),
+  Color(0xff8796b7),
+  Color(0xff69836b),
+  Color(0xffff8a44),
+  Color(0xffa78398),
+  Color(0xff8796b7),
+  Color(0xff69836b),
+  Color(0xffff8a44),
+  Color(0xffa78398),
+  Color(0xff8796b7),
+  Color(0xff69836b),
 ];
 
 class _SearchPageState extends State<SearchPage> {
@@ -44,8 +39,10 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-  
+    var spotifyProvider = Provider.of<SpotifyProvider>(context, listen: false);
+    spotifyProvider.getCategory();
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<SpotifyProvider>(
@@ -56,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 15),
                   width: MediaQuery.of(context).size.width,
                   child: Text(
                     "Ara",
@@ -86,29 +83,51 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 Expanded(
                   child: GridView.builder(
-                    //  shrinkWrap: true,
-                    itemCount: renk.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 1.7, crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              //color: Color(Random().nextInt(0xfff2a98a))
-                              color: renk[index]),
-                          child: Text(
-                              "${provider.response?.categories?.href.toString()}"),
-                          width: 100,
-                          /*    child: Text(provider
+                      //  shrinkWrap: true,
+                      itemCount: provider.response?.categories?.items?.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 1.5, crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                //color: Color(Random().nextInt(0xfff2a98a))
+                                color: Colors.green.shade300),
+                            width: 100,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, top: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${provider.response?.categories?.items?[index].name}",
+                                    style: GoogleFonts.lato(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 80, top: 7),
+                                    child: ClipOval(
+                                      child: Image.network(
+                                        "${provider.response?.categories?.items?[index].icons?.first.url}",
+                                        width: 65,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            /*    child: Text(provider
                                     .response!.categories!.items![index].name
                                     .toString()), */
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        );
+                      }),
                 ),
               ],
             ),

@@ -1,29 +1,31 @@
-import 'dart:convert';
+import 'package:dio/dio.dart';
 
-import 'package:http/http.dart' as http;
-
-import '../model/categories_model.dart';
 import '../model/spotify_model.dart';
 
-Future<SpotifyModel> getSpotify()async{
- SpotifyModel? data = SpotifyModel();
-  var headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQAPjMKWqEs8YOZThAqEGHLqKKZvLmBh3ZVigkETUw0dL32gFy5QWH90o5KlYmBdN5WwsS1cgHYGv8jXp6n1Z6qK992aGNeWoTmwdi3NGfYKsMYWBoN810SioOo_qgcRHpy-uQZ_otAsqHoIFosrJDU_qIcgO_dsQhkmAx4EZHiVBSrIfJk3305TDJTpOQ0By6Zivav2CYvTfMI8RDCZAohvoKJYUxfjmSdB0-HK6KFveojUfrsDS_lCKFc8tn7LNKeTB2OdCbaKw21XeJNcsGRJJcFp1sLidrRW3ajB',
-  };
+class Services {
+  final Dio _dio =
+      Dio(BaseOptions(baseUrl: "https://api.spotify.com/v1/", headers: {
+    "Authorization":
+        "Bearer BQAWVMxiAkuixH0PVQDlYkG8LocpnDlMuRHBC6UOjq5p2bithhaGkNOrJ_-Qw3k84sUUGjwb1eSmeOC1CDPZleqnX1MybDyxRHMy-v6hvA3qKnlbXjTf0b_i8cfR9UElT7KjgQ2Bq3CIBJRSrS19maM0wktz_roUIcFQuBXMB5WuLlsPFv-ESEmsAblCDNtjtiQnUKYj26ugib_7ONwkOx7rdx31H6XZ9tKhRojD5bqS_-h5atvQbRXni6HviCuMEFDU6uDhv_x4-frt5kHrntGJERvPIFqEGCabATqP"
+  }));
 
-  var params = {
-    'country': 'TR',
-    'locale': 'tr_TR',
-  };
-  var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+  Future<SpotifyCategoryModel?> getSpotifyModel() async {
+    SpotifyCategoryModel? searchModel;
+    try {
+      final response = await _dio
+          .get("browse/categories?country=TR&locale=tr_TR&limit=20&offset=1");
 
-  var url = Uri.parse('https://api.spotify.com/v1/browse/categories?$query');
-  var res = await http.get(url, headers: headers);
-  if (res.statusCode != 200) throw Exception('http.get error: statusCode= ${res.statusCode}');
-  print(res.body);
-  data=SpotifyModel.fromJson(jsonDecode(res.body));
-  return data;
+      if (response.statusCode == 200) {
+        print("Çalışıyor");
+        searchModel = SpotifyCategoryModel.fromJson(response.data);
+        print(searchModel.categories);
+      } else {
+        print("Çalışmıyor");
+      }
+      return searchModel;
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
 }
-
