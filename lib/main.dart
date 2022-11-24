@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/albumspage.dart';
 import 'pages/homepage.dart';
 import 'pages/searchpage.dart';
 import 'providers/category_provider.dart';
