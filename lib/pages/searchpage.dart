@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
-            child: Column(
+            child:  provider.response?.categories!=null?   Column(
               children: [
                 Container(
                   padding: const EdgeInsets.only(bottom: 15),
@@ -130,7 +130,7 @@ class _SearchPageState extends State<SearchPage> {
                       }),
                 ),
               ],
-            ),
+            ):  CircularProgressIndicator(),
           ),
         );
       },
