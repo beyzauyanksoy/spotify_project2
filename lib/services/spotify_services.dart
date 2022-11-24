@@ -6,7 +6,7 @@ class Services {
   final Dio _dio =
       Dio(BaseOptions(baseUrl: "https://api.spotify.com/v1/", headers: {
     "Authorization":
-        "Bearer BQAsDL-jWOL_RG9kmc9GUObRzd8HJoIIcIbUzrzkauz6mBFNcSQ2fBV1XEfZCZ7uPGcd494kt9DwaxpfEKUBzYIYOtnzZVAVMGByQiBAGfmaVByP3tPpRVoV8cvv4vzqIQ8ZKpzxhazJnTiM7dNsSD97eAntaCdRdVKdYK4Ot77YqHhBHZ1S-Us7x4mo2LjSjuZLIWWQaycplVruZIQkC1_i046scZgOOkv9DZtYk9Zpr2glwfP21luXqjEF4JI8GdY1MRAk66c9AL2hDhQh3odFA7f46yYaGYvSIEzb"
+        "Bearer BQCtje8UL9a__dXZkQ7FtI6z8JHS-vwTykrmei-XK6OZ9qXNcmLjqt44a332q1sbyVk30U4YwldfTdp6t3lhdEbDmdMYteqqtuG3gWxvf4HwG-h-80bE8DPefs6lPo3KvXS1iQnGt6UKS9_JnJ3dPoyaCzSEdazJrvZWuYypEwQ6sCjHX5q0opPWNQpg2y6Qd-Na6bcOq4L1iG8Q7zncZCV4-SEva5Ddx0sAs6ODuFovL2SlVY7UrIvV0sT0OeK93T6EmEEmWuwpJfBH_Naqu0Br4fAIfJ1czXct6tIc"
   }));
 
   Future<SpotifyCategoryModel?> getSpotifyModel() async {

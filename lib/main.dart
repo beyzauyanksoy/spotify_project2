@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/homepage.dart';
 import 'pages/searchpage.dart';
 import 'providers/category_provider.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SearchPage(),
+      home: const HomePage(),
     );
   }
 }
