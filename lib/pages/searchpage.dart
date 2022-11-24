@@ -50,88 +50,126 @@ class _SearchPageState extends State<SearchPage> {
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
-            child:  provider.response?.categories!=null?   Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  width: MediaQuery.of(context).size.width,
-                  child: Text(
-                    "Ara",
-                    style: GoogleFonts.lato(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                const TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(),
-                    labelText: 'Ne dinlemek istiyorsunuz?',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    "Hepsine göz at",
-                    style: GoogleFonts.lato(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: GridView.builder(
-                      //  shrinkWrap: true,
-                      itemCount: provider.response?.categories?.items?.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 1.5, crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                //color: Color(Random().nextInt(0xfff2a98a))
-                                color: Colors.green.shade300),
-                            width: 100,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8, top: 8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${provider.response?.categories?.items?[index].name}",
-                                    style: GoogleFonts.lato(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Padding(
+            child: provider.response?.categories != null
+                ? Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          "Ara",
+                          style: GoogleFonts.lato(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      const TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(),
+                          labelText: 'Ne dinlemek istiyorsunuz?',
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          "Hepsine göz at",
+                          style: GoogleFonts.lato(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                            //  shrinkWrap: true,
+                            itemCount:
+                                provider.response?.categories?.items?.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: 1.5, crossAxisCount: 2),
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      //color: Color(Random().nextInt(0xfff2a98a))
+                                      color: Colors.green.shade300),
+                                  width: 100,
+                                  child: Padding(
                                     padding:
-                                        const EdgeInsets.only(left: 80, top: 7),
-                                    child: ClipOval(
-                                      child: Image.network(
-                                        "${provider.response?.categories?.items?[index].icons?.first.url}",
-                                        width: 65,
-                                      ),
+                                        const EdgeInsets.only(left: 8, top: 8),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${provider.response?.categories?.items?[index].name}",
+                                          style: GoogleFonts.lato(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 80, top: 7),
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              "${provider.response?.categories?.items?[index].icons?.first.url}",
+                                              width: 65,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            /*    child: Text(provider
+                                  /*    child: Text(provider
                                     .response!.categories!.items![index].name
                                     .toString()), */
-                          ),
-                        );
-                      }),
-                ),
-              ],
-            ):  CircularProgressIndicator(),
+                                ),
+                              );
+                            }),
+                      ),
+                    ],
+                  )
+                : CircularProgressIndicator(),
           ),
+
+          bottomNavigationBar: BottomNavigationBar(
+            //
+            type: BottomNavigationBarType.fixed, // Fixed 
+  backgroundColor: Colors.white, // <-- This works for fixed
+  selectedItemColor: Colors.green,
+  unselectedItemColor: Colors.grey,
+ 
+
+  selectedFontSize: 14,
+  unselectedFontSize: 14,
+  onTap: (value) {
+    // Respond to item press.
+  },
+  items: [
+    BottomNavigationBarItem(
+      label: "Anasayfa",
+      icon: Icon(Icons.favorite),
+    ),
+    BottomNavigationBarItem(
+      label: "Ara",
+      icon: Icon(Icons.music_note),
+    ),
+    BottomNavigationBarItem(
+      label: "Kitaplığın",
+      icon: Icon(Icons.location_on),
+    ),
+    BottomNavigationBarItem(
+      label: "Premium",
+      icon: Icon(Icons.library_books),
+    ),
+  ],
+),
         );
       },
     );
