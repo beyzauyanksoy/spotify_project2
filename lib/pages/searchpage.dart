@@ -135,7 +135,7 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ],
                   )
-                : CircularProgressIndicator(),
+                : const CircularProgressIndicator(),
           ),
 
           bottomNavigationBar: BottomNavigationBar(
@@ -151,7 +151,7 @@ class _SearchPageState extends State<SearchPage> {
   onTap: (value) {
     // Respond to item press.
   },
-  items: [
+  items: const [
     BottomNavigationBarItem(
       label: "Anasayfa",
       icon: Icon(Icons.favorite),
