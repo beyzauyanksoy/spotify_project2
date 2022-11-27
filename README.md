@@ -15,4 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![beyza](https://github.com/beyzauyanksoy/spotify_project2/blob/features/assets/spotify.gif?raw=true)
+![beyza](https://github.com/beyzauyanksoy/spotify_project2/blob/features/assets/Android-Emulator-Pixel_4_API_33_5554-2022-11-27-22-17-36.gif?raw=true)
