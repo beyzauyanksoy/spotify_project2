@@ -11,7 +11,7 @@ import '../model/profile_model.dart';
 import '../model/userplaylist_model.dart';
 
 String token =
-    "BQCrmX4NEsUYULRVgHfnlgSfZIH9tbdvm1NSrC54oULKh8mLsJZZ4JI8Mm2sfddy3XID3TX_KDts34hZLTxNseOlN_Q9w5-E40hHGNjfUftaLpywy2KvzYGvk1WuEoPvL5OzioMNAmAotYPRZJnYbxDTcPM4JRRJqYyMxUTgsD5dGoE8tBlCYgQny6vtzRM3_ht5d2F0AysdbcdjnyTkxGaD6FaUrRNrxIAVjtRxmYI58xp2BnCFACjTJO0d0dbc28gEpZwD8VnwNft7hI9Vo3F8oplAGf6j67il4Zz7";
+    "BQB9xc2WyJJt_EU2Hkol6USZ1G75wEckBsd8ZjFLYq113OLQUEWdvHUEnvB-I49hWe2-P3BH42R2yQto7ZLHpQJA_UnAMVMNodrGPBqBnU8tbYVReHoCgWYxEOHCIZ5VOFRNtbX2jP-B8B-tyFi9ntMvSVR-BWcQBJDkvVICyXcdf3hV5gpI5IlHM_gHe6eVQV986DUdWq7MvIBzGONuuYJmi9mVpjIxcQGGn7H2ClUvI69V4bJbCpUB0hTG0toRnYLuJWAQCB4_aOFzW488cDGur3ENYVS0KgBvjLQx";
 
 class Services {
   final Dio _dio = Dio(

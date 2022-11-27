@@ -170,6 +170,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               name: provider.userplaylist?.items?[index].name
                                       .toString() ??
                                   "",
+                              imageUrl: provider.userplaylist!.items![index].images
+                              !.isNotEmpty ? provider.userplaylist!.items![index].images!.first.url:null,
                             ),
                           ),
                         );

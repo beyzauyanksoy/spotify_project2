@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProfilePublicPlayList extends StatelessWidget {
-  final String name;
-  final String displayName;
+  final String? name;
+  final String? displayName;
+  final String? imageUrl;
 
   const ProfilePublicPlayList({
     Key? key,
     required this.name,
     required this.displayName,
+    required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,9 @@ class ProfilePublicPlayList extends StatelessWidget {
           Container(
               color: const Color(0xffE6E6E6),
               width: 50,
-              child: Image.asset("assets/profilplaylistsmall.png")),
+              child: imageUrl == null
+                  ? Image.asset("assets/profilplaylistsmall.png")
+                  : Image.network(imageUrl!)),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -30,7 +34,7 @@ class ProfilePublicPlayList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    name ??"",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -41,7 +45,7 @@ class ProfilePublicPlayList extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    displayName,
+                    displayName ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
