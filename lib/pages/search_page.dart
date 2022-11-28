@@ -28,6 +28,10 @@ class _SearchPageState extends State<SearchPage> {
     return Consumer<SpotifyProvider>(
       builder: (BuildContext context, provider, Widget? child) {
         return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.green,
+            elevation: 0,
+          ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(top: 35, left: 15, right: 15),
@@ -77,7 +81,7 @@ class _SearchPageState extends State<SearchPage> {
                                 width: 10,
                               ),
                               Expanded(
-                                   child: provider.searchmodel?.tracks
+                                child: provider.searchmodel?.tracks
                                             ?.items?[index].name !=
                                         null
                                     ? Text(
