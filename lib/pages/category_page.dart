@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_project_2/pages/search_page.dart';
 
 import '../providers/spotify_provider.dart';
 
@@ -51,6 +52,13 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           child: Center(
                             child: TextFormField(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SearchPage()),
+                                );
+                              },
                               textAlignVertical: TextAlignVertical.center,
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.search),

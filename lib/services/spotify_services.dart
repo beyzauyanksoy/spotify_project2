@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_project_2/model/album_model.dart';
 import 'package:spotify_project_2/model/artist_model.dart';
 
 import '../model/album_track_model.dart';
+import '../model/album_track_search_model.dart';
 import '../model/category_model.dart';
 import '../model/featured_playlist_model.dart';
 import '../model/playlist_model.dart';
@@ -11,7 +14,7 @@ import '../model/profile_model.dart';
 import '../model/userplaylist_model.dart';
 
 String token =
-    "BQD1DeIuWSd6yzGYIwTZJwMwJ4BPkmFt2GA2U6eC3s876QCV0YIvIcNtHg0eX4nstcx3mHO4d1RMaF1v6I1Pg4xtE3Vh9uR_Rvq3b5SxOL6MY2RaZz5_ncoc4AmjnfHdKSuBqRaMwHvWXOU_t09eA_4WuYJOiCExy2mFWiHLYh8FCL4JVcHGFZY-YRkTScsGs7BAy7T57aC-4hptniSJaXvA2XnvPic-eRylfwhQhERsMGKNWLViPnJW-lWs5cU0hAVmBAu5r4BX5ImAxyAxcc-zvX3j61AE9rXfPhXr";
+    "BQCwVHT2aeiXo4PlS6PsVffCHFH9k6OfUjJYrcHtCF6J2yWmgPrPoIfdR5RpvQfI8pOiVZJAh745bxHnYmcF0dUkpr4KEveSBHQlvDXdCF5E3C0kT44r9MqGw0QujLMjdW84Qt8My93nX1fW7OMXuaAWS0ffLjGRRsJtMd17LjRG6bjrDTQ5rgQ_io3de_nEatIViYD2VUAOfl8xXmTlK7JGAxxmgMMgpxsfxU75WIDhV0sVyUFveZpYKz4Iu788eNszpOk7MLTzKq7XwKj-0EcluwkFR43iN77clzlQ";
 
 class Services {
   final Dio _dio = Dio(
@@ -133,4 +136,33 @@ class Services {
     }
     return model;
   }
+
+
+  Future<SearchModels?> getSearch({required String query}) async {
+  SearchModels searchModels;
+ 
+  try {
+  
+    try {
+      final response = await _dio
+          .get("search?q=$query&type=track%2Cartist&market=TR&limit=20&offset=1");
+      searchModels = SearchModels.fromJson(response.data);
+   
+      if (response.statusCode == 200) {
+        print("Çalışıyor");
+      } else {
+        print("Çalışmıyor");
+      }
+      return searchModels;
+    } catch (e) {
+      print(e);
+    }
+  } catch (e) {
+    log(e.toString());
+  }
+  return null;
+}
+
+
+
 }

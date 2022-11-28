@@ -5,6 +5,7 @@ import 'package:spotify_project_2/model/artist_model.dart';
 import 'package:spotify_project_2/model/category_model.dart';
 import 'package:spotify_project_2/model/featured_playlist_model.dart';
 
+import '../model/album_track_search_model.dart';
 import '../model/playlist_model.dart';
 import '../model/profile_model.dart';
 import '../model/userplaylist_model.dart';
@@ -19,6 +20,8 @@ class SpotifyProvider with ChangeNotifier {
   AlbumTrackModel? artistSongs = AlbumTrackModel();
   ProfileModel? userprofil = ProfileModel();
   UserPlayListModel? userplaylist = UserPlayListModel();
+  SearchModels? searchmodel=SearchModels();
+   String query = "eminem";
 
   getCategories() async {
     categories = await Services().getCategories();
@@ -59,4 +62,15 @@ class SpotifyProvider with ChangeNotifier {
     userplaylist = await Services().getuserplaylist();
     notifyListeners();
   }
+
+   getSearchData() async{
+      searchmodel = await Services().getSearch(query: query);
+      notifyListeners();
+    }
+
+    getQuery({required String query}){
+      this.query = query; 
+      getSearchData();
+      notifyListeners();
+    }
 }
