@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
 
 import '../providers/spotify_provider.dart';
@@ -47,33 +48,44 @@ class _SearchPageState extends State<SearchPage> {
                         hintStyle: TextStyle(color: Colors.grey)),
                   ),
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: provider.searchmodel?.tracks?.items?.length,
+                    itemCount: provider.searchmodel?.tracks?.items?.length ?? 0,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.green,
-              
+                              // color: Colors.green,
                               ),
                           height: 70,
                           child: Row(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Container(
-                                  child: Image.network(
-                                      "${provider.searchmodel?.tracks?.items?[index].album?.images?[0].url}"),
-                                ),
-                              ),
-                              SizedBox(
+                              provider.searchmodel?.tracks?.items?[index].album
+                                          ?.images?[0].url !=
+                                      null
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Container(
+                                        child: Image.network(
+                                            "${provider.searchmodel?.tracks?.items?[index].album?.images?[0].url}"),
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Text(
-                                '${provider.searchmodel?.tracks?.items?[index].name}',
+                              Expanded(
+                                   child: provider.searchmodel?.tracks
+                                            ?.items?[index].name !=
+                                        null
+                                    ? Text(
+                                        '${provider.searchmodel?.tracks?.items?[index].name}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      )
+                                    : const SizedBox(),
                               )
                             ],
                           ),

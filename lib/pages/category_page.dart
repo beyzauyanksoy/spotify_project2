@@ -1,9 +1,11 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_project_2/pages/search_page.dart';
 
 import '../providers/spotify_provider.dart';
+import '../widget/category_item_widget.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -68,14 +70,16 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Text(
-                          "Hepsine göz at",
-                          style: GoogleFonts.lato(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                      Bounce(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Hepsine göz at",
+                            style: GoogleFonts.lato(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -92,32 +96,11 @@ class _CategoryPageState extends State<CategoryPage> {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Stack(
-                                  children: [
-                                    Image.network(
-                                      "${provider.categories?.categories?.items?[index].icons?.first.url}",
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    Positioned(
-                                      bottom: 4,
-                                      right: 0,
-                                      left: 0,
-                                      child: Text(
-                                        "${provider.categories?.categories?.items?[index].name ?? ""}",
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              child: CategoryItemWidget(
+                                imageUrl:
+                                    "${provider.categories?.categories?.items?[index].icons?.first.url}",
+                                name:
+                                    "${provider.categories?.categories?.items?[index].name ?? ""}",
                               ),
                             );
                           },
@@ -132,3 +115,40 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 }
+
+// class CategoryItemWidget extends StatelessWidget {
+//   const CategoryItemWidget({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ClipRRect(
+//       borderRadius: BorderRadius.circular(6),
+//       child: Stack(
+//         children: [
+//           Image.network(
+//             "${provider.categories?.categories?.items?[index].icons?.first.url}",
+//             width:
+//                 MediaQuery.of(context).size.width / 2,
+//             fit: BoxFit.cover,
+//           ),
+//           Positioned(
+//             bottom: 4,
+//             right: 0,
+//             left: 0,
+//             child: Text(
+//               "${provider.categories?.categories?.items?[index].name ?? ""}",
+//               style: const TextStyle(
+//                 color: Colors.white,
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//               textAlign: TextAlign.center,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

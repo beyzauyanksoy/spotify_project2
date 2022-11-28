@@ -8,6 +8,7 @@ import 'package:spotify_project_2/model/featured_playlist_model.dart';
 import '../model/album_track_search_model.dart';
 import '../model/playlist_model.dart';
 import '../model/profile_model.dart';
+import '../model/searc_model.dart';
 import '../model/userplaylist_model.dart';
 import '../services/spotify_services.dart';
 
@@ -20,7 +21,7 @@ class SpotifyProvider with ChangeNotifier {
   AlbumTrackModel? artistSongs = AlbumTrackModel();
   ProfileModel? userprofil = ProfileModel();
   UserPlayListModel? userplaylist = UserPlayListModel();
-  SearchModels? searchmodel=SearchModels();
+  AlbumTrackSearchModel? searchmodel=AlbumTrackSearchModel();
    String query = "eminem";
 
   getCategories() async {

@@ -11,10 +11,11 @@ import '../model/category_model.dart';
 import '../model/featured_playlist_model.dart';
 import '../model/playlist_model.dart';
 import '../model/profile_model.dart';
+import '../model/searc_model.dart';
 import '../model/userplaylist_model.dart';
 
 String token =
-    "BQCwVHT2aeiXo4PlS6PsVffCHFH9k6OfUjJYrcHtCF6J2yWmgPrPoIfdR5RpvQfI8pOiVZJAh745bxHnYmcF0dUkpr4KEveSBHQlvDXdCF5E3C0kT44r9MqGw0QujLMjdW84Qt8My93nX1fW7OMXuaAWS0ffLjGRRsJtMd17LjRG6bjrDTQ5rgQ_io3de_nEatIViYD2VUAOfl8xXmTlK7JGAxxmgMMgpxsfxU75WIDhV0sVyUFveZpYKz4Iu788eNszpOk7MLTzKq7XwKj-0EcluwkFR43iN77clzlQ";
+    "BQDYtrkq7ZfZR1fDgHJ_VZVbALwNZi9ODkhLRQJL9cUg52WA-LJ_fwE57LAcf7mMHdnfV6yzAq7s4Ntn4NBHl1kWdBv1SRBAcz0FBCNV6aVcRRHjUWxRpkya2hFLcWGlHv7HzDcEDJqSz-UUVMDcs4kIwMlkDYzlowxi8G44y0RvbxxAuYIGARTxvEEWe8s0oTGaZFSDUSKvAUYaiGAYMD_5tgumWtSThQg_PJ_vzcJuwu43WTpYHS-kmWtGVQqKXKSSJ0_-jo_0ZqXfcISURAmdI3mkaMZEzQIotM5u";
 
 class Services {
   final Dio _dio = Dio(
@@ -137,32 +138,27 @@ class Services {
     return model;
   }
 
+  Future<AlbumTrackSearchModel?> getSearch({required String query}) async {
+    AlbumTrackSearchModel searchModels;
 
-  Future<SearchModels?> getSearch({required String query}) async {
-  SearchModels searchModels;
- 
-  try {
-  
     try {
-      final response = await _dio
-          .get("search?q=$query&type=track%2Cartist&market=TR&limit=20&offset=1");
-      searchModels = SearchModels.fromJson(response.data);
-   
-      if (response.statusCode == 200) {
-        print("Çalışıyor");
-      } else {
-        print("Çalışmıyor");
+      try {
+        final response = await _dio.get(
+            "search?q=$query&type=track%2Cartist&market=TR&limit=20&offset=1");
+        searchModels = AlbumTrackSearchModel.fromJson(response.data);
+
+        if (response.statusCode == 200) {
+          print("Çalışıyor");
+        } else {
+          print("Çalışmıyor");
+        }
+        return searchModels;
+      } catch (e) {
+        print(e);
       }
-      return searchModels;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
-  } catch (e) {
-    log(e.toString());
+    return null;
   }
-  return null;
-}
-
-
-
 }

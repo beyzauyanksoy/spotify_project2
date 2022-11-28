@@ -4,6 +4,7 @@ import 'package:spotify_project_2/providers/spotify_provider.dart';
 import 'package:spotify_project_2/widget/song_item.dart';
 
 import '../services/spotify_services.dart';
+import '../widget/type_seemore_widget.dart';
 
 class AlbumsPage extends StatefulWidget {
   const AlbumsPage({super.key, required this.id});
@@ -180,25 +181,12 @@ class _AlbumsPageState extends State<AlbumsPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 25, right: 25, top: 20, bottom: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Songs",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xff131313),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text("see more",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Color(0xff131313),
-                              fontWeight: FontWeight.w400))
-                    ],
+                const Padding(
+                  padding:
+                      EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 25),
+                  child: TypeSeeMoreWidget(
+                    listName: 'Songs',
+                    detailName: 'see more',
                   ),
                 ),
                 Padding(
